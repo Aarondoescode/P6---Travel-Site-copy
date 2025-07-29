@@ -90,7 +90,7 @@ function displayAttractions(locationName, userLat, userLon, places) {
 
   results.innerHTML = `
     <div class="col s12">
-      <h5>Top Tourist Attractions near "${locationName}":</h5>
+      <h5> Here are your recommendations near "${locationName}":</h5>
       <div class="row">
         ${places.map((place) => `
           <div class="col s12 m6 l4">
