@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const locationInput = document.getElementById("location").value.trim();
     if (!locationInput) return;
 
-    results.innerHTML = `<p class="center-align">Searching for tourist spots near "${locationInput}"...</p>`;
+    results.innerHTML = `<p class="center-align">Searching for travel spots near "${locationInput}"...</p>`;
 
     try {
       const apiKey = "d58409f7d83d46b4900418b06f019386"; // Replace with your actual Geoapify key
@@ -97,7 +97,6 @@ function displayAttractions(locationName, userLat, userLon, places) {
             <div class="card">
               <div class="card-content">
                 <span class="card-title">${place.name}</span>
-                <p><strong>Type:</strong> ${place.type}</p>
                 <p><strong>Address:</strong> ${place.address}</p>
                 <p><strong>Distance:</strong> ${place.distance} km</p>
                 ${place.website ? `<p><a href="${place.website}" target="_blank">Website</a></p>` : ""}
