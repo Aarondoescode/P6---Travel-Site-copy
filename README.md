@@ -16,3 +16,7 @@ Page Requirements
   The contact page should have a contact form and include an email address for potential clients or employers to reach out to.
   The contact form must accept a name, phone number, email, and comment from someone attempting to fill out the form. 
   
+Using the Travel Recommendation Feature
+
+Navigate to the Travel Recommendation section of the site. Enter your desired destination (city name) into the input field. When submitted, the application sends a request to the Geoapify Places API, which returns a curated list of noteworthy attractions and points of interest in that location. The results are rendered dynamically on the page based on your input, providing a real-time, location-based travel guide.
+
