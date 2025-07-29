@@ -5,166 +5,88 @@
   }
 }
 
-/* Style result cards container */
+/* Result cards container */
 #travelrecResults {
   margin-top: 2rem;
 }
 
-/* Optional: card margin */
-
+/* Global styles */
 html {
   scroll-behavior: smooth;
 }
-.bot-nav-space {
-    display: flex;
-    justify-content: space-around;
-    margin: 0;
-}
 
 body {
-    margin: 0;
-    padding-bottom: 0px;
-    padding-top: 62px; /* Match your navbar height */
-
+  margin: 0;
+  padding-top: 62px; /* Offset for fixed navbar */
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-.nav-color{
-    background-color: #657A42;
+
+/* Navigation and footer colors */
+.nav-color {
+  background-color: #657A42;
 }
 
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-
-}
 .page-footer {
   background-color: #657A42;
 }
-.bottom-nav .nav-wrapper ul {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0%;
-    padding: 2px 0;
-    background-color: #657A42;
+
+/* Bottom navigation bar */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
+.bottom-nav .nav-wrapper ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0;
+  padding: 2px 0;
+  background-color: #657A42;
+}
+
+.bottom-nav .nav-wrapper ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 49px;
+  height: 100%;
+  border-radius: 12px;
+  transition: background-color 0.3s;
+}
+
+.bottom-nav .nav-wrapper ul li a.active {
+  background-color: #e0e0e0;
+}
+
+.material-icons {
+  font-size: 24px;
+  color: #424242;
+}
+
+/* Container setup */
 .container {
   max-width: 1200px;
   width: 90%;
   margin: 0 auto;
 }
-.bottom-nav .nav-wrapper ul li a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 49px;
-    height: 100%;
-    border-radius: 12px;
-    transition: background-color 0.3s;
-}
 
-.bottom-nav .nav-wrapper ul li a.active {
-    background-color: #e0e0e0;
-}
-
-.material-icons {
-    font-size: 24px;
-    color: #424242;
-}
-
-/* Search Container */
-.search-container {
-  position: relative;
-  height: 56px;
-  display: flex;
-  align-items: center;
-}
-
-/* Search Trigger (magnifying glass) */
-.search-trigger {
-  position: absolute;
-  right: 0;
-  z-index: 2;
-  color: white;
-  transition: all 0.3s ease;
-}
-
-nav .brand-logo.left{
-    font-size: x-large;
-}
-/* Expanded Search Area */
-.search-expand {
-  position: absolute;
-  right: 0;
-  display: flex;
-  align-items: center;
-  width: 0;
-  overflow: hidden;
-  transition: width 0.3s ease;
-}
-
-/* Search Input */
-.search-input.white {
-  width: 200px;
-  height: 40px;
-  padding: 0 15px;
-  margin: 0;
-  border: none;
-  border-radius: 20px !important;
-  background: white !important;
-  color: #333 !important;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.search-input.white::placeholder {
-  color: #999 !important;
-}
-
-/* Close Button */
-.close-search {
-  margin-left: 10px;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-/* Active States */
-.search-container.active .search-trigger {
-  opacity: 0;
-  transform: translateX(10px);
-}
-
-.search-container.active .search-expand {
-  width: 250px;
-}
-
-.search-container.active .close-search {
-  opacity: 1;
-}
-/* Close Button */
-.close-search {
-  margin-left: 10px;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  cursor: pointer; /* Add pointer cursor */
-  z-index: 3; /* Ensure it's above other elements */
-  position: relative; /* Needed for z-index to work */
-}
-.input-field>label{
-    top: 8px;
-}
-.top-nav-space{
+/* Navbar fixed at top */
+.top-nav-space {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 999; /* Ensures navbar stays above other content */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional shadow */
+  z-index: 999;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Fixed Navbar */
 .top-navbar-fixed {
   position: fixed;
   top: 0;
@@ -173,27 +95,26 @@ nav .brand-logo.left{
   z-index: 997;
 }
 
-
-/* Top Navigation */
 .top-nav {
   height: 64px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
 }
 
-/* Right-aligned sidenav */
+/* Side navigation (right aligned) */
 .sidenav.right-aligned {
   right: 0;
   left: auto;
   transform: translateX(100%);
-}
-
-.sidenav.right-aligned {
   width: 300px;
 }
 
 /* Search bar styling */
 .search-container {
+  position: relative;
+  height: 56px;
+  display: flex;
+  align-items: center;
   padding: 10px 15px 0;
 }
 
@@ -222,16 +143,73 @@ nav .brand-logo.left{
   cursor: pointer;
 }
 
-/* Menu item styling */
-.sidenav li>a {
-  padding: 0 16px;
+/* Search icon trigger */
+.search-trigger {
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  color: white;
+  transition: all 0.3s ease;
 }
 
-.sidenav li>a>i.material-icons {
-  margin-right: 16px;
+/* Expanded search input */
+.search-expand {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  width: 0;
+  overflow: hidden;
+  transition: width 0.3s ease;
 }
 
-/* Brand logo styling */
+/* Search input field style */
+.search-input.white {
+  width: 200px;
+  height: 40px;
+  padding: 0 15px;
+  margin: 0;
+  border: none;
+  border-radius: 20px !important;
+  background: white !important;
+  color: #333 !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.search-input.white::placeholder {
+  color: #999 !important;
+}
+
+/* Close search button */
+.close-search {
+  margin-left: 10px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+  z-index: 3;
+  position: relative;
+}
+
+/* Active search states */
+.search-container.active .search-trigger {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+.search-container.active .search-expand {
+  width: 250px;
+}
+
+.search-container.active .close-search {
+  opacity: 1;
+}
+
+/* Input label fix */
+.input-field > label {
+  top: 8px;
+}
+
+/* Brand logo */
 .brand-logo {
   padding-left: 15px;
   font-size: 1.5rem;
@@ -242,10 +220,14 @@ nav .brand-logo.left{
 .sidenav-trigger i {
   color: #333;
 }
+
+/* Card title */
 .card-title {
   font-size: 1.5rem;
   color: #1565c0;
 }
+
+/* Page layout flexbox */
 html, body {
   height: 100%;
   margin: 0;
@@ -260,4 +242,10 @@ html, body {
 footer {
   flex-shrink: 0;
 }
-    
+
+/* Utility class */
+.bot-nav-space {
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+}

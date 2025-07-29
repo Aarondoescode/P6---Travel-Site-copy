@@ -5,40 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Travelspiria</title>
 
+  <!-- Google Fonts & Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Trebuchet+MS&display=swap" rel="stylesheet" />
+
   <!-- Materialize CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="styles/travelrec.css" />
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles/travelrec.css" />
 </head>
 <body>
+
   <main class="main-content">
     <div class="container">
       <h4 class="center-align">Travel Recommendations</h4>
+
+      <!-- Search Form -->
       <form id="travelForm" class="row">
-  <div class="col s12">
-    <div class="container" style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
-      <!-- Input field -->
-      <div class="input-field" style="flex: 1 1 300px;">
-        <input id="location" type="text" required>
-        <label for="location">Enter a Location (City, State, or Country)</label>
-      </div>
+        <div class="col s12">
+          <div class="container" style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
+            
+            <!-- Input Field -->
+            <div class="input-field" style="flex: 1 1 300px;">
+              <input id="location" type="text" required />
+              <label for="location">Enter a Location (City, State, or Country)</label>
+            </div>
 
-      <!-- Button -->
-      <button class="btn waves-effect waves-light" type="submit" style="height: 56px; margin-top: 10px;">Search</button>
-    </div>
-  </div>
-</form>
+            <!-- Search Button -->
+            <button class="btn waves-effect waves-light" type="submit" style="height: 56px; margin-top: 10px;">
+              Search
+            </button>
+          </div>
+        </div>
+      </form>
 
-   <div id="results" class="row center-align" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
-
+      <!-- Results Container -->
+      <div id="results" class="row center-align" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
     </div>
   </main>
 
+  <!-- Footer -->
   <footer data-include="components/Dfooter.html" class="page-footer grey lighten-3"></footer>
-<div id="someId"></div>
 
+  <!-- External Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="scripts/index.js"></script>
   <script src="scripts/main.js"></script>
