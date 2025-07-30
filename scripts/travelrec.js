@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     results.innerHTML = `<p class="center-align">Searching for travel spots near "${locationInput}"...</p>`;
 
     try {
-      const apiKey = "d58409f7d83d46b4900418b06f019386"; // Replace this with your actual Geoapify key
+      const apiKey = "d58409f7d83d46b4900418b06f019386";
       const { lat, lon, name } = await getCoordinates(locationInput, apiKey);
       const attractions = await getTouristAttractions(lat, lon, apiKey);
       displayAttractions(name, lat, lon, attractions);
@@ -100,6 +100,37 @@ function displayAttractions(locationName, userLat, userLon, places) {
     return;
   }
 
+  // Clear results container
+  results.innerHTML = `<div class="col s12"><h5>Top tourist attractions near <strong>${locationName}</strong>:</h5></div>`;
+
+  // Create the row container
+  const row = document.createElement("div");
+  row.className = "row";
+
+  // Generate cards
+  places.forEach((place) => {
+    const col = document.createElement("div");
+    col.className = "col s12 m6 l4";
+
+    col.innerHTML = `
+      <div class="card hoverable">
+        <div class="card-content">
+          <span class="card-title">${place.name}</span>
+          <p><strong>Address:</strong> ${place.address}</p>
+          <p><strong>Distance:</strong> ${place.distance} km</p>
+          ${place.website ? `<p><a href="${place.website}" target="_blank">Website</a></p>` : ""}
+        </div>
+      </div>
+    `;
+
+    row.appendChild(col);
+  });
+
+  // Append row to results
+  results.appendChild(row);
+}
+
+
   results.innerHTML = `
     <div class="col s12">
       <h5>Top tourist attractions near <strong>${locationName}</strong>:</h5>
@@ -119,4 +150,4 @@ function displayAttractions(locationName, userLat, userLon, places) {
       </div>
     </div>
   `;
-}
+
