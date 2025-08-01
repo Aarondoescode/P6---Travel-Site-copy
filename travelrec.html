@@ -38,8 +38,22 @@
               Search
             </button>
           </div>
+
+          <!-- Only one checkbox here -->
+          <div class="center-align" style="margin-top: 10px;">
+            <label>
+              <input type="checkbox" id="showWeather" class="filled-in" checked />
+              <span>Show weather info</span>
+            </label>
+          </div>
         </div>
       </form>
+
+      <!-- Weather Info -->
+      <div id="weatherInfo" class="card-panel teal lighten-4" style="display: none; margin-bottom: 2rem;">
+        <h5 class="black-text">Current Weather</h5>
+        <div id="weatherDetails" class="black-text"></div>
+      </div>
 
       <!-- Results Container -->
       <div id="results" class="row center-align" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>

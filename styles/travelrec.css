@@ -249,3 +249,27 @@ footer {
   justify-content: space-around;
   margin: 0;
 }
+/* Equal-height and clean card layout in results */
+#results .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#results .col {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+#results .card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#results .card-content {
+  flex-grow: 1;
+}
+#weatherInfo {
+  margin-bottom: 2rem;
+}
