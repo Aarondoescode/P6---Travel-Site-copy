@@ -1,73 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("travelForm");
   const results = document.getElementById("results");
+  const spinner = document.getElementById("loadingSpinner");
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const locationInput = document.getElementById("location").value.trim();
     const showWeather = document.getElementById("showWeather").checked;
 
-  if (!locationInput) return;
+    if (!locationInput) return;
 
-  results.innerHTML = `<p class="center-align">Searching for travel spots near "${locationInput}"...</p>`;
-  document.getElementById("weatherInfo").style.display = "none";
-  document.getElementById("weatherDetails").textContent = "";
+    // Show spinner, clear results
+    spinner.style.display = "block";
+    results.innerHTML = "";
+    document.getElementById("weatherInfo").style.display = "none";
+    document.getElementById("weatherDetails").textContent = "";
 
-  try {
-    const apiKey = "d58409f7d83d46b4900418b06f019386";
-    const { lat, lon, name } = await getCoordinates(locationInput, apiKey);
-    const attractions = await getTouristAttractions(lat, lon, apiKey);
-    displayAttractions(name, lat, lon, attractions);
+    try {
+      const apiKey = "d58409f7d83d46b4900418b06f019386";
+      const { lat, lon, name } = await getCoordinates(locationInput, apiKey);
+      const attractions = await getTouristAttractions(lat, lon, apiKey);
+      displayAttractions(name, lat, lon, attractions);
 
-    if (showWeather) {
-      getWeather(name);
+      if (showWeather) {
+        getWeather(name);
+      }
+    } catch (err) {
+      console.error(err);
+      results.innerHTML = `<p class="red-text center-align">Something went wrong. Try again.</p>`;
+    } finally {
+      spinner.style.display = "none";
     }
-  } catch (err) {
-    console.error(err);
-    results.innerHTML = `<p class="red-text center-align">Something went wrong. Try again.</p>`;
-  }
- });
+  });
 });
 
-
-// Fetch weather info
-async function getWeather(city) {
-  const apiKey = 'ec8571eba2540e381e0a3c423713c20c'; // Your OpenWeatherMap API key
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=imperial`;
-
-  const weatherInfo = document.getElementById("weatherInfo");
-  const weatherDetails = document.getElementById("weatherDetails");
-
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-
-    if (data.cod !== 200) {
-      weatherDetails.textContent = "Weather data not available.";
-      weatherInfo.style.display = "block";
-      return;
-    }
-
-    const desc = data.weather[0].description;
-    const temp = data.main.temp;
-    const icon = data.weather[0].icon;
-
-    weatherDetails.innerHTML = `
-      <div class="valign-wrapper">
-        <img src="https://openweathermap.org/img/wn/${icon}@2x.png"
-             alt="${desc}" style="margin-right: 1rem; width: 48px; height: 48px;" />
-        <div><strong>${city}</strong>: ${temp.toFixed(1)}°F — ${desc}</div>
-      </div>
-    `;
-    weatherInfo.style.display = "block";
-  } catch (error) {
-    console.error("Weather fetch error:", error);
-    weatherDetails.textContent = "Error retrieving weather data.";
-    weatherInfo.style.display = "block";
-  }
-}
-
-// Geoapify fetch
 async function getCoordinates(location, apiKey) {
   const url = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(location)}&apiKey=${apiKey}`;
   const res = await fetch(url);
@@ -115,13 +82,48 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
     Math.sin(dLat / 2) ** 2 +
     Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
     Math.sin(dLon / 2) ** 2;
-
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c;
 }
 
 function deg2rad(deg) {
   return deg * (Math.PI / 180);
+}
+
+async function getWeather(city) {
+  const apiKey = 'ec8571eba2540e381e0a3c423713c20c';
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=imperial`;
+
+  const weatherInfo = document.getElementById("weatherInfo");
+  const weatherDetails = document.getElementById("weatherDetails");
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.cod !== 200) {
+      weatherDetails.textContent = "Weather data not available.";
+      weatherInfo.style.display = "block";
+      return;
+    }
+
+    const desc = data.weather[0].description;
+    const temp = data.main.temp;
+    const icon = data.weather[0].icon;
+
+    weatherDetails.innerHTML = `
+      <div class="valign-wrapper">
+        <img src="https://openweathermap.org/img/wn/${icon}@2x.png"
+             alt="${desc}" style="margin-right: 1rem; width: 48px; height: 48px;" />
+        <div><strong>${city}</strong>: ${temp.toFixed(1)}°F — ${desc}</div>
+      </div>
+    `;
+    weatherInfo.style.display = "block";
+  } catch (error) {
+    console.error("Weather fetch error:", error);
+    weatherDetails.textContent = "Error retrieving weather data.";
+    weatherInfo.style.display = "block";
+  }
 }
 
 function displayAttractions(locationName, userLat, userLon, places) {
@@ -139,7 +141,7 @@ function displayAttractions(locationName, userLat, userLon, places) {
 
   places.forEach((place) => {
     const col = document.createElement("div");
-    col.className = "col s12 m6 l4";
+    col.className = "col s12"; // Force single-column layout
 
     col.innerHTML = `
       <div class="card hoverable">

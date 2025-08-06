@@ -19,6 +19,7 @@
 <body>
 
   <main class="main-content">
+    <div class="content-wrapper z-depth-1">
     <div class="container">
       <h4 class="center-align">Travel Recommendations</h4>
 
@@ -28,17 +29,13 @@
           <div class="container" style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
             
             <!-- Input Field -->
-            <div class="input-field" style="flex: 1 1 300px;">
-              <input id="location" type="text" required />
-              <label for="location">Enter a Location (City, State, or Country)</label>
-            </div>
-
-            <!-- Search Button -->
-            <button class="btn waves-effect waves-light" type="submit" style="height: 56px; margin-top: 10px;">
-              Search
+             <div class="search-wrapper">
+            <input id="location" type="text" placeholder="Enter a Location (City, State, or Country)" required />
+            <button class="btn search-btn" type="submit">
+            <i class="material-icons">search</i>
             </button>
           </div>
-
+          
           <!-- Only one checkbox here -->
           <div class="center-align" style="margin-top: 10px;">
             <label>
@@ -53,6 +50,20 @@
       <div id="weatherInfo" class="card-panel teal lighten-4" style="display: none; margin-bottom: 2rem;">
         <h5 class="black-text">Current Weather</h5>
         <div id="weatherDetails" class="black-text"></div>
+      </div>
+
+<div id="loadingSpinner" class="center-align" style="display: none; margin-top: 2rem;">
+  <div class="preloader-wrapper active">
+    <div class="spinner-layer spinner-blue-only">
+      <div class="circle-clipper left"><div class="circle"></div></div>
+      <div class="gap-patch"><div class="circle"></div></div>
+      <div class="circle-clipper right"><div class="circle"></div></div>
+    </div>
+  </div>
+</div>
+      <!-- Error Message -->
+      <div id="errorMessage" class="red-text center-align" style="display: none; margin-top: 1rem;">
+        <p>Something went wrong. Please try again.</p>
       </div>
 
       <!-- Results Container -->

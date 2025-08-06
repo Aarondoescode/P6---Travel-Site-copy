@@ -16,13 +16,13 @@ html {
 }
 
 body {
+  background-color: #657A42;
   margin: 0;
-  padding-top: 62px; /* Offset for fixed navbar */
+  padding-top: 62px; /* if you're offsetting for fixed nav */
   padding-bottom: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  font-family: 'Trebuchet MS', sans-serif;
 }
+
 
 /* Navigation and footer colors */
 .nav-color {
@@ -31,6 +31,27 @@ body {
 
 .page-footer {
   background-color: #657A42;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content-wrapper {
+  background-color: #657A42;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 1200px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.6s ease-out;
 }
 
 /* Bottom navigation bar */
@@ -63,6 +84,11 @@ body {
 
 .bottom-nav .nav-wrapper ul li a.active {
   background-color: #e0e0e0;
+}
+.page-footer {
+  padding-top: 20px;
+  padding-bottom: 0px;
+  border-top: 2px solid #556b37; /* slightly darker version of nav */
 }
 
 .material-icons {
@@ -128,6 +154,7 @@ body {
   width: calc(100% - 3rem);
   border: 1px solid #e0e0e0;
   border-radius: 4px;
+  
 }
 
 .search-container .label-icon {
@@ -148,7 +175,7 @@ body {
   position: absolute;
   right: 0;
   z-index: 2;
-  color: white;
+  color: rgb(255, 255, 255);
   transition: all 0.3s ease;
 }
 
@@ -207,6 +234,7 @@ body {
 /* Input label fix */
 .input-field > label {
   top: 8px;
+  color:white
 }
 
 /* Brand logo */
@@ -233,6 +261,7 @@ html, body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  
 }
 
 .main-content {
@@ -272,4 +301,65 @@ footer {
 }
 #weatherInfo {
   margin-bottom: 2rem;
+}
+.card {
+  border-radius: 16px;
+  overflow: hidden; /* ensures content stays within rounded shape */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* creates soft shadow */
+}
+.card.hoverable:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.card .card-content {
+  padding: 20px;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center; /* 🧠 aligns input & button center */
+  max-width: 700px;
+  width: 100%;
+  margin: 2rem auto;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding-left: 1.2rem;
+  padding-right: 0.2rem;
+  overflow: hidden;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  padding: 0.9rem 0;
+  background-color: transparent;
+  box-shadow: none !important;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.search-input:focus {
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+.search-btn {
+  background-color: #657A42;
+  border: none;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  height: 42px;
+  cursor: pointer;
+}
+
+.search-btn i {
+  color: white;
+  font-size: 1.6rem;
 }
